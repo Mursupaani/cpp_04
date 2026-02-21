@@ -103,7 +103,8 @@ int main(void)
 				break ;
 			}
 		}
-		Animal* j_copy = new Cat(*dynamic_cast<Cat *>(j));
+		Animal* j_copy = new Cat();
+		*dynamic_cast<Cat *>(j_copy) = *dynamic_cast<Cat *>(j);
 		delete j;
 		std::cout << "\nOriginal deleted.\n" << std::endl;
 		std::cout << j_copy->getType() << ": ";
