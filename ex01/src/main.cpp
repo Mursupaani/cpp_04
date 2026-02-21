@@ -19,14 +19,25 @@
 
 int main(void)
 {
-	std::cout << "TIME FOR SOME DOGS:" << std::endl;
 	{
-		std::cout << "Const Dog:" << std::endl;
-		const Animal* j = new Dog();
-		std::cout << j->getType() << ": ";
-		j->makeSound();
-		delete j;
+		std::cout << "TIME FOR AN ARRAY OF ANIMALS:" << std::endl;
+		Animal *array[10];
+		for (int i = 0; i < 10; ++i)
+		{
+			if (i < 5)
+				array[i] = new Dog();
+			else
+				array[i] = new Cat();
+		}
+		for (int i = 0; i < 10; ++i)
+		{
+			std::cout << i << ": " << array[i]->getType() << ": ";
+			array[i]->makeSound();
+		}
+		for (int i = 0; i < 10; ++i)
+			delete array[i];
 	}
+	std::cout << "\nTIME FOR SOME DOGS WITH THOUGHTS:" << std::endl;
 	{
 		std::cout << std::endl;
 		std::cout << "Dogs without const:" << std::endl;
@@ -71,15 +82,7 @@ int main(void)
 		}
 		delete j_copy;
 	}
-	std::cout << "\n\nTIME FOR SOME CATS:" << std::endl;
-	{
-		std::cout << std::endl;
-		std::cout << "Const Cat:" << std::endl;
-		const Animal* i = new Cat();
-		std::cout << i->getType() << ": ";
-		i->makeSound();
-		delete i;
-	}
+	std::cout << "\nTIME FOR SOME CATS WITH THOUGHTS:" << std::endl;
 	{
 		std::cout << std::endl;
 		std::cout << "Cats without const:" << std::endl;
