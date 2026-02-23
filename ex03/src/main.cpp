@@ -43,24 +43,26 @@ int main(void)
 
 	ICharacter* bob = new Character("bob");
 
-	me->use(0, *bob);
-	me->use(1, *bob);
+	ICharacter* me_clone = new Character(*dynamic_cast<Character *>(me));
+	delete me;
+	me_clone->use(0, *bob);
+	me_clone->use(1, *bob);
 	std::cout << "\n";
-	me->unequip(0);
-	me->use(0, *bob);
-	me->use(-1, *bob);
-	me->use(4, *bob);
+	me_clone->unequip(0);
+	me_clone->use(0, *bob);
+	me_clone->use(-1, *bob);
+	me_clone->use(4, *bob);
 	tmp = src->createMateria("cure");
-	me->equip(tmp);
-	me->use(0, *bob);
+	me_clone->equip(tmp);
+	me_clone->use(0, *bob);
 	std::cout << "\n";
-	me->unequip(0);
-	me->unequip(0);
-	me->unequip(1);
-	me->unequip(1);
+	me_clone->unequip(0);
+	me_clone->unequip(0);
+	me_clone->unequip(1);
+	me_clone->unequip(1);
 
 	delete bob;
-	delete me;
+	delete me_clone;
 	delete src;
 	return 0;
 }

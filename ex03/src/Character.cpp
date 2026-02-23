@@ -31,11 +31,14 @@ Character::Character(const std::string name) : Character()
 Character::Character(const Character &other) : _curInvCount(other._curInvCount), _curUnequipCount(other._curUnequipCount)
 {
 	_name = other._name;
+	for (unsigned int i = 0; i < _unequippedMax; ++i)
+		_unequipped[i] = nullptr;
+	for (unsigned int i = 0; i < _invMax; ++i)
+		_inventory[i] = nullptr;
 	for (unsigned int i = 0; i < _invMax; ++i)
 	{
 		if (other._inventory[i])
-			// FIXME: Clone the materia
-			_inventory[i] = nullptr;
+			_inventory[i] = other._inventory[i]->clone();
 	}
 }
 
